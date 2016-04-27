@@ -4,16 +4,16 @@
 #include"book.h"
 void printHead( )      /*´òÓ¡Í¼ÊéĞÅÏ¢µÄ±íÍ·*/
 {
-printf("%ld%s%ld%s%d\n","Ë÷ÒıºÅ","ÊéÃû","Ñ§ºÅ","ĞÕÃû","Í¼Êé×´Ì¬");
+printf("%ld%s%ld%s%d\n","Ë÷ÒıºÅ","ÊéÃû","Ñ§ºÅ","ĞÕÃû","¿â´æ");
 }
 
 void menu( )         /*¶¥²ã²Ëµ¥º¯Êı*/
 {
 		printf("******** 1. ÏÔÊ¾»ù±¾ĞÅÏ¢ ********\n");
-		printf("******** 2. »ù±¾ĞÅÏ¢¹ÜÀí ********\n");
+		printf("******** 2. Í¼ÊéĞÅÏ¢¹ÜÀí ********\n");
 		printf("******** 3. ½èÔÄÈËĞÅÏ¢¹ÜÀí ********\n");
-		printf("******** 3. ½èÔÄÊı¾İÍ³¼Æ********\n");
-        printf("******** 4. ¸ù¾İÌõ¼ş²éÑ¯ ********\n");
+		printf("******** 4. ½èÔÄÊı¾İÍ³¼Æ********\n");
+        printf("******** 5. ¸ù¾İÌõ¼ş²éÑ¯ ********\n");
 		printf("******** 0. ÍË³ö         ********\n");
 }
 
@@ -24,16 +24,17 @@ void menuBase( )     /*2¡¢»ù±¾ĞÅÏ¢¹ÜÀí²Ëµ¥º¯Êı*/
 		printf("%%%%%%%% 3. ĞŞ¸ÄÍ¼Êé¼ÇÂ¼ %%%%%%%%\n");
 		printf("%%%%%%%% 0. ·µ»ØÉÏ²ã²Ëµ¥ %%%%%%%%\n");
 }
-void pepleBase()      /*3¡¢½èÔÄÈËĞÅÏ¢¹ÜÀí²Ëµ¥º¯Êı*/
+void peopleBase()      /*3¡¢½èÔÄÈËĞÅÏ¢¹ÜÀí²Ëµ¥º¯Êı*/
 {      
 	    printf("@@@@@@@@@ 1. ²åÈë½èÔÄÈËĞÅÏ¢¼ÇÂ¼ @@@@@@@@\n");
 		printf("@@@@@@@@@ 2. É¾³ı½èÔÄÈËĞÅÏ¢¼ÇÂ¼ @@@@@@@@\n");
 		printf("@@@@@@@@@ 3. ĞŞ¸Ä½èÔÄÈËĞÅÏ¢¼ÇÂ¼ @@@@@@@@\n");
-        printf("@@@@@@@@@ 0. ·µ»Ø½èÔÄÈËĞÅÏ¢¼ÇÂ¼ @@@@@@@@\n");
+        printf("@@@@@@@@@ 0. ·µ»ØÉÏ²ã²Ëµ¥ @@@@@@@@\n");
 }
 
 void menuCount( )    /*4¡¢Í³¼Æ²Ëµ¥º¯Êı*/
 {
+	    printf("&&&&&&&& 1. Çó½èÔÄ´ÎÊı×î¸ß &&&&&&&&\n");
 		printf("&&&&&&&& 1. Çó½èÔÄ´ÎÊı×îµÍ &&&&&&&&\n");
 		printf("&&&&&&&& 0. ·µ»ØÉÏ²ã²Ëµ¥ &&&&&&&&\n");
 }
@@ -42,10 +43,11 @@ void menuSearch()    /*5¡¢¸ù¾İÌõ¼ş²éÑ¯²Ëµ¥º¯Êı*/
 {
 		printf("######## 1. °´ÊéÃû²éÑ¯   ########\n");
 		printf("######## 2. °´Ë÷ÒıºÅ²éÑ¯   ########\n");
+		printf("######## 3. ½èÔÄÈËĞÅÏ¢²éÑ¯   ########\n");
 		printf("######## 0. ·µ»ØÉÏ²ã²Ëµ¥ ########\n");
 }
 
-int baseManage(Book book[],int n)    	     /*¸Ãº¯ÊıÍê³É»ù±¾ĞÅÏ¢¹ÜÀí*/
+int baseManage(Book book[],int n)    	     /*¸Ãº¯ÊıÍê³É»ù±¾Í¼ÊéĞÅÏ¢¹ÜÀí*/
 /*°´Ë÷ÒıºÅ½øĞĞ²åÈëÉ¾³ıĞŞ¸Ä£¬Ë÷ÒıºÅ²»ÄÜÖØ¸´*/
 {  
 		int choice,t,find[NUM];
@@ -80,56 +82,54 @@ printf("choose one operation you want to do:\n");
 	}while(choice);
 return n;                             /*·µ»Øµ±Ç°²Ù×÷½áÊøºóµÄÊµ¼Ê¼ÇÂ¼ÌõÊı*/
 }
-int baseManage2(Book book[],int n)    	     /*¸Ãº¯ÊıÍê³É»ù±¾ĞÅÏ¢¹ÜÀí*/
-/*°´Ñ§ºÅ½øĞĞ²åÈëÉ¾³ıĞŞ¸Ä£¬Ë÷ÒıºÅ²»ÄÜÖØ¸´*/
+int baseManage1(Student student[],int n)    	     /*¸Ãº¯ÊıÍê³É½èÔÄÈË»ù±¾ĞÅÏ¢¹ÜÀí*/
+/*°´Ñ§ºÅ½øĞĞ²åÈëÉ¾³ıĞŞ¸Ä£¬ Ñ§ºÅ²»ÄÜÖØ¸´*/
 {  
 		int choice,t,find[NUM];
-     Book b;
+     Student s;
 do
 	    {   
-menuBase( );                  /*ÏÔÊ¾¶ÔÓ¦µÄ¶ş¼¶²Ëµ¥*/
-printf("choose one operation you want to do:\n");
+         peopleBase( );                  /*ÏÔÊ¾¶ÔÓ¦µÄ¶ş¼¶²Ëµ¥*/
+           printf("choose one operation you want to do:\n");
 		     scanf("%d",&choice);	          /*¶ÁÈëÑ¡Ïî*/
 		     switch(choice)
 		     {
-			   case 1:	 readBook(&b,1);       /*¶ÁÈëÒ»Ìõ´ı²åÈëµÄÑ§ºÅ¼ÇÂ¼*/
-					 n=addBook(book,n,b);   /*µ÷ÓÃº¯Êı²åÈëÑ§ºÅ¼ÇÂ¼*/
+			   case 1:	 readStudent(&s,1);       /*¶ÁÈëÒ»Ìõ´ı²åÈëµÄ½èÔÄÈË¼ÇÂ¼*/
+					 n=insertStudent(student,n,s);   /*µ÷ÓÃº¯Êı²åÈë½èÔÄÈË¼ÇÂ¼*/
 					 break;
-			   case 2:  printf("Input the number deleted\n");
-					 scanf("%ld",&b.number);  /*¶ÁÈëÒ»¸ö´ıÉ¾³ıµÄÑ§ÉúÑ§ºÅ*/
-					 n=deleteBook(book,n,b);   /*µ÷ÓÃº¯ÊıÉ¾³ıÖ¸¶¨Ñ§ºÅµÄÑ§Éú¼ÇÂ¼*/
+			   case 2:  printf("Input the student number deleted\n");
+					 scanf("%ld",&s.num);  /*¶ÁÈëÒ»¸ö´ıÉ¾³ıµÄÑ§ºÅ*/
+					 n=deleteStudent(student,n,s);   /*µ÷ÓÃº¯ÊıÉ¾³ıÖ¸¶¨Ñ§ºÅµÄ½èÔÄÈË¼ÇÂ¼*/
 					 break;
-			   case 3:  printf("Input the number modified\n");
-					 scanf("%ld",&b.number);  /*¶ÁÈëÒ»¸ö´ıĞŞ¸ÄµÄÑ§ÉúÑ§ºÅ*/
-				      t=searchBook(book,n,b,1,find) ; /*µ÷ÓÃº¯Êı²éÕÒÖ¸¶¨Ñ§ºÅµÄÑ§Éú¼ÇÂ¼*/
+			   case 3:  printf("Input the student number modified\n");
+					 scanf("%ld",&s.num);  /*¶ÁÈëÒ»¸ö´ıĞŞ¸ÄµÄÑ§ºÅ¼ÇÂ¼*/
+				      t=searchStudent(student,n,s,1,find) ; /*µ÷ÓÃº¯Êı²éÕÒÖ¸¶¨Ñ§ºÅµÄ½èÔÄÈË¼ÇÂ¼*/
 				      if (t)                 /*Èç¹û¸ÃÑ§ºÅµÄ¼ÇÂ¼´æÔÚ*/
 					 {
-						  readBook(&b,1);   /*¶ÁÈëÒ»ÌõÍêÕûµÄÑ§ºÅ¼ÇÂ¼ĞÅÏ¢*/
-					      book[find[0]]=b;    /*½«¸Õ¶ÁÈëµÄ¼ÇÂ¼¸³Öµ¸øĞèÒªĞŞ¸ÄµÄÊı×é¼ÇÂ¼*/ 					 
+						  readStudent(&s,1);   /*¶ÁÈëÒ»ÌõÍêÕûµÄ½èÔÄÈË¼ÇÂ¼ĞÅÏ¢*/
+					      student[find[0]]=s;    /*½«¸Õ¶ÁÈëµÄ¼ÇÂ¼¸³Öµ¸øĞèÒªĞŞ¸ÄµÄÊı×é¼ÇÂ¼*/ 					 
 					  }					 
-					 else                 /*Èç¹û¸ÃÑ§ºÅµÄ¼ÇÂ¼²»´æÔÚ*/ 
- printf("this book is not in,can not be modified.\n"); /*Êä³öÌáÊ¾ĞÅÏ¢*/
+					 else                 /*Èç¹û¸ÃÑ§ºÃµÄ½èÔÄÈË¼ÇÂ¼²»´æÔÚ*/ 
+ printf("this people is not in,can not be modified.\n"); /*Êä³öÌáÊ¾ĞÅÏ¢*/
 					 break;
 			    case 0: break;
 		    }
 	}while(choice);
 return n;                             /*·µ»Øµ±Ç°²Ù×÷½áÊøºóµÄÊµ¼Ê¼ÇÂ¼ÌõÊı*/
 }
-
-void printMarkBook(char *s,double m[19][3],int k)   /*´òÓ¡½èÔÄ´ÎÊıÍ¨ÓÃº¯Êı£¬±»countManage µ÷ÓÃ
+void printBookTimes(char *b,double m[NUM][2],int k)   /*´òÓ¡½èÔÄ´ÎÊıÍ¨ÓÃº¯Êı£¬±»countManage µ÷ÓÃ
                                                   /*ĞÎÊ½²ÎÊık´ú±íÊä³ö²»Í¬µÄÄÚÈİ*/
   { 
 	int i;
-    printf(s);                                  /*ÕâÀïµÄs´«ÈëµÄÊÇÊä³ö·ÖÊıµÄÌáÊ¾ĞÅÏ¢*/
-    for (i=0;i<19;i++)                           /*i¿ØÖÆÄÄÒ»ÃÅ¿Î*/
-		  printf("%10.2lf",m[i][k]);
-	   printf("\n");
-}
-
+	printf(b);
+	for(i=0;i<NUM;i++)
+	   printf("%d",m[i][k]);
+    printf("\n");
+  } 
 void countManage(Book book[],int n)               /*¸Ãº¯ÊıÍê³É½èÔÄ´ÎÊıµÄÍ³¼Æ¹¦ÄÜ*/
 {
 		int choice;
-		double mark[19][3];
+		double mark[NUM][2];
 		do
 		{
 			menuCount( );                        /*ÏÔÊ¾¶ÔÓ¦µÄ¶ş¼¶²Ëµ¥*/
@@ -137,9 +137,9 @@ void countManage(Book book[],int n)               /*¸Ãº¯ÊıÍê³É½èÔÄ´ÎÊıµÄÍ³¼Æ¹¦ÄÜ
 			scanf("%d",&choice);
 			switch(choice)
 			{
-				case 1:   printMarkBook("20±¾ÊéµÄ×î¸ß½èÔÄ´ÎÊıÊÇ:\n",mark,0);  /*Êä³ö×î¸ß´ÎÊı*/
+				case 1:   printBookTimes("10±¾ÊéµÄ×î¸ß½èÔÄ´ÎÊıÊÇ:\n",mark,0);  /*Êä³ö×î¸ß´ÎÊı*/
 				      break;
-				case 2:   printMarkBook("20±¾ÊéµÄ×îµÍ½èÔÄ´ÎÊıÊÇ:\n",mark,1);  /*Êä³ö×îµÍ´ÎÊı*/
+				case 2:   printBookTimes("¡¤10±¾ÊéµÄ×îµÍ½èÔÄ´ÎÊıÊÇ:\n",mark,1);  /*Êä³ö×îµÍ´ÎÊı*/
 				      break;
 				
 				case 0:   break;
@@ -151,6 +151,7 @@ void searchManage(Book book[],int n)               /*¸Ãº¯ÊıÍê³É¸ù¾İÌõ¼ş²éÑ¯¹¦ÄÜ*
 {
     int i,choice,findnum,f[NUM];
     Book b;
+    Student s;
 	   do
 {
 			menuSearch( );                         /*ÏÔÊ¾¶ÔÓ¦µÄ¶ş¼¶²Ëµ¥*/
@@ -158,12 +159,14 @@ void searchManage(Book book[],int n)               /*¸Ãº¯ÊıÍê³É¸ù¾İÌõ¼ş²éÑ¯¹¦ÄÜ*
 			scanf("%d",&choice);
 			switch(choice)
 			{
-				case 1:   printf("Input a book\'s num will be searched:\n");
-				      scanf("%ld",&b.number);         /*ÊäÈë´ı²éÑ¯Í¼ÊéµÄË÷ÒıºÅ*/
+				case 1:   printf("Input a book\'s title will be searched:\n");
+				      scanf("%ld",&b.title);         /*ÊäÈë´ı²éÑ¯Í¼ÊéµÄË÷ÒıºÅ*/
 					  break;
-				case 2:   printf("Input a book\'s name will be searched:\n");
-				      scanf("%s",b.title);	          /*ÊäÈë´ı²éÑ¯Í¼ÊéµÄÊéÃû*/		  
+				case 2:   printf("Input a book\'s number will be searched:\n");
+				      scanf("%s",&b.number);	          /*ÊäÈë´ı²éÑ¯Í¼ÊéµÄÊéÃû*/		  
 				      break;   
+			    case 3:  printf(" search the informatiom of the readers"); 
+			           scanf("%ld",&s.num);          /*ÊäÈë´ı²éÑ¯½èÔÄÈËµÄÑ§ºÅ*/ 
 				case 0:   break;
 			}
 		 	if (choice>=1&&choice<=2)
@@ -181,7 +184,7 @@ void searchManage(Book book[],int n)               /*¸Ãº¯ÊıÍê³É¸ù¾İÌõ¼ş²éÑ¯¹¦ÄÜ*
 	    }while (choice);
 }
 
-int runMain(Book book[],int n,int choice)    /*Ö÷¿ØÄ£¿é£¬¶ÔÓ¦ÓÚÒ»¼¶²Ëµ¥ÆäÏÂ¸÷¹¦ÄÜÑ¡ÔñÖ´ĞĞ*/
+int runMain(Book book[],Student student[],int n,int choice)    /*Ö÷¿ØÄ£¿é£¬¶ÔÓ¦ÓÚÒ»¼¶²Ëµ¥ÆäÏÂ¸÷¹¦ÄÜÑ¡ÔñÖ´ĞĞ*/
 {
 		switch(choice)
 		{
@@ -191,7 +194,7 @@ int runMain(Book book[],int n,int choice)    /*Ö÷¿ØÄ£¿é£¬¶ÔÓ¦ÓÚÒ»¼¶²Ëµ¥ÆäÏÂ¸÷¹¦Ä
 					break;
 			case 2: n=baseManage(book,n);    /* 2. Í¼Êé»ù±¾ĞÅÏ¢¹ÜÀí*/
 			   	     break;
-			case 3: n=baseManage(book,n);     /* 3. ½èÔÄÈËĞÅÏ¢¹ÜÀí*/
+			case 3: n=baseManage1(student,n);     /* 3. ½èÔÄÈËĞÅÏ¢¹ÜÀí*/
 					break;
 			case 4: countManage(book,n);     /* 4. ½èÔÄ´ÎÊıÍ³¼Æ*/
 					break;
@@ -204,20 +207,26 @@ int runMain(Book book[],int n,int choice)    /*Ö÷¿ØÄ£¿é£¬¶ÔÓ¦ÓÚÒ»¼¶²Ëµ¥ÆäÏÂ¸÷¹¦Ä
 
 int main( )
 {
-		Book book[NUM];                /*¶¨ÒåÊµ²ÎÒ»Î¬Êı×é´æ´¢Í¼Êé¼ÇÂ¼*/
-      int choice,n;
+		Book book[NUM];
+		Student student[STU];               /*¶¨ÒåÊµ²ÎÒ»Î¬Êı×é´æ´¢Í¼Êé¼ÇÂ¼*/
+      int choice,n,m;
 	 n=readFile(book);                  /*Ê×ÏÈ¶ÁÈ¡ÎÄ¼ş£¬¼ÇÂ¼ÌõÊı·µ»Ø¸³Öµ¸øn*/
+	 m=readstudentFile(student);
 	 if (!n)                          /*Èç¹ûÔ­À´µÄÎÄ¼şÎª¿Õ*/
 	     {
 		    n=createFile(book);              /*ÔòÊ×ÏÈÒª½¨Á¢ÎÄ¼ş£¬´Ó¼üÅÌÉÏ¶ÁÈëÒ»ÏµÁĞ¼ÇÂ¼´æÓÚÎÄ¼ş*/
-}	 	 
+         }
+	  else if(!m)
+	  	{
+  		    m=createstudentfile(student);
+  	     }	 	 
 	do
 	     {
 	         menu();                      /*ÏÔÊ¾Ö÷²Ëµ¥*/
 	         printf("Please input your choice: ");
 	         scanf("%d",&choice);
 	         if (choice>=0&&choice<=5)
-	              n=runMain(book,n,choice);    /*Í¨¹ıµ÷ÓÃ´Ëº¯Êı½øĞĞÒ»¼¶¹¦ÄÜÏîµÄÑ¡ÔñÖ´ĞĞ*/
+	              n=runMain(book,student,n,choice);    /*Í¨¹ıµ÷ÓÃ´Ëº¯Êı½øĞĞÒ»¼¶¹¦ÄÜÏîµÄÑ¡ÔñÖ´ĞĞ*/
 	         else 
 		          printf("error input,please input your choice again!\n");
 	} while (choice);
