@@ -12,7 +12,7 @@ int readBook(Book  *book , int n)          /*¶ÁÈëÍ¼Êé¼ÇÂ¼Öµ£¬Í¼ÊéÎª0»ò¶ÁÂú¹æ¶¨Ìõ
 	     scanf("%ld", &book[i].number);
 		if (book[i].number==0) break;
 		printf("name: ");
-		scanf("%s",book[i].title);	
+		scanf("%s",&book[i].title);	
 		printf("ÊäÈëÕâ±¾ÊéµÄÊıÁ¿×ÜÊı:\n");
 		scanf("%d",&book[i].kc);	
 	}
@@ -29,7 +29,6 @@ void printBook ( Book  *book , int n)       /*Êä³öËùÓĞÍ¼Êé¼ÇÂ¼µÄÖµ*/
 	    printf("%5d\n",book[i].kc);
 	}
 }
-
 int equal(Book b1,Book b2,int condition)  /*ÈçºÎÅĞ¶ÏÁ½¸öÍ¼Êé¼ÇÂ¼ÏàµÈ*/
 {
 	if (condition==1)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª1£¬Ôò±È½ÏË÷ÒıºÅ*/
@@ -43,14 +42,36 @@ int equal(Book b1,Book b2,int condition)  /*ÈçºÎÅĞ¶ÏÁ½¸öÍ¼Êé¼ÇÂ¼ÏàµÈ*/
 	     return b1.kc==b2.kc;
 	else return 1;                       /*ÆäÓàÇé¿ö·µ»Ø1*/
 } 
-
-int larger(Book b1,Book b2,int condition)  /*¸ù¾İconditionÌõ¼ş±È½ÏÁ½¸öÍ¼Êé Ë÷ÒıºÅ¼ÇÂ¼µÄ´óĞ¡*/
+int larger(Book b1,Book b2,int condition)  /*¸ù¾İconditionÌõ¼ş±È½ÏÁ½¸öÍ¼Êé½èÔÄ´ÎÊı*/
 {
-	if (condition==1)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª1£¬Ôò±È½ÏÑ§ºÅ*/
-		return b1.number>b2.number;	
+	if (condition==1)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª1£¬Ôò±È½Ï½èÔÄ´ÎÊı*/
+		return b1.time>b2.time;	
 	else return 1; /*ÆäÓàÇé¿ö·µ»Ø1*/
 }
-
+int smaller(Book b1,Book b2,int condition)  /*¸ù¾İconditionÌõ¼ş±È½ÏÁ½¸öÍ¼Êé½èÔÄ´ÎÊı*/
+{
+	if (condition==1)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª1£¬Ôò±È½Ï½èÔÄ´ÎÊı*/
+		return b1.time<b2.time;	
+	else return 1; /*ÆäÓàÇé¿ö·µ»Ø1*/
+}
+void caluTime(int m[],Book book[],int n)
+{
+   int i,j,*p;
+   for(i=0;i<NUM;i++)
+   {
+   	m[i]=book[0].time;
+   	for(j=1;j<n;j++)
+  	   if(m[i]<book[j].time)
+	   	  m[i]=book[j].time;
+   }
+   for(i=0;i<NUM;i++)
+   {
+   	*p=book[j].time;
+   	for(j=1;j<n;j++)
+   	  if(*p>book[j].time)
+   	     *p=book[j].time;
+   }	
+} 
 void reverse(Book book[],int n)             /*Êı×éÔªËØÄæÖÃ*/
 {
 	int i;
@@ -64,13 +85,13 @@ void reverse(Book book[],int n)             /*Êı×éÔªËØÄæÖÃ*/
 }
 void sortBook(Book book[],int n,int condition)  /*Ñ¡Ôñ·¨ÅÅĞò£¬°´conditionÌõ¼şÓÉĞ¡µ½´óÅÅĞò*/
 {
-	int i,j,minpos;                      /*minposÓÃÀ´´æ´¢±¾ÌË×îĞ¡ÔªËØËùÔÚµÄÏÂ±ê*/
-	Book t;
+	int i,j,minpos,maximum;                      /*minposÓÃÀ´´æ´¢±¾ÌË×îĞ¡ÔªËØËùÔÚµÄÏÂ±ê*/
+	Book t,k;
 	for (i=0;i<n-1;i++)                  /*¿ØÖÆÑ­»·µÄn-1ÌË*/
 	{
 		minpos=i;
 		for (j=i+1;j<n;j++)             /*Ñ°ÕÒ±¾ÌË×îĞ¡ÔªËØËùÔÚµÄÏÂ±ê*/
-			if (larger(book[minpos],book[j],condition))
+			if (smaller(book[maximum],book[j],condition))
 				minpos=j;
 		if (i!=minpos)                 /*±£Ö¤±¾ÌË×îĞ¡ÔªËØµ½´ïÏÂ±êÎªiµÄÎ»ÖÃ*/
 		{
@@ -78,9 +99,15 @@ void sortBook(Book book[],int n,int condition)  /*Ñ¡Ôñ·¨ÅÅĞò£¬°´conditionÌõ¼şÓÉĞ
 			book[i]=book[minpos];
 			book[minpos]=t;
 		}
+	 for(i=0;i<n-1;i++)
+	 {
+ 		maximum=i;
+ 		for(j=i+1;j<n;j++)
+ 		  if(larger(book[minpos],book[j],condition))
+ 		      maximum=j;
+ 	}
 	}
 }
-
 int searchBook(Book book[],int n,Book b,int condition,int f[ ])  /*ÔÚbookÊı×éÖĞÒÀconditionÌõ¼ş²éÕÒ*/
 /*ÓëbÏàÍ¬µÄÔªËØ£¬ÓÉÓÚ²»Ö¹Ò»Ìõ¼ÇÂ¼·ûºÏÌõ¼ş£¬Òò´Ë½«ÕâĞ©ÔªËØµÄÏÂ±êÖÃÓÚ fÊı×éÖĞ*/
 {
@@ -93,12 +120,11 @@ int searchBook(Book book[],int n,Book b,int condition,int f[ ])  /*ÔÚbookÊı×éÖĞÒ
 		}
 	 return find;                                /*·µ»Øfind£¬ÆäÖµÎª0Ôò±íÊ¾Ã»ÕÒµ½*/ 
 }
-
-int addBook(Book book[],int n,Book b)              /*ÏòbookÊı×éÖĞÒÀÑ§ºÅµİÔö²åÈëÒ»¸öÔªËØs*/
+int addBook(Book book[],int n,Book b)              /*ÏòbookÊı×éÖĞÒÀË÷ÒıºÅµİÔö²åÈëÒ»¸öÔªËØs*/
 {
 	int i;
-	sortBook(book,n,1);                              /*ÏÈ°´Ñ§ºÅÅÅĞò*/
-	for (i=n-1;i>=0;i--)                          /*°´Ñ§ºÅ´ÓĞ¡µ½´óÓĞĞò*/
+	sortBook(book,n,1);                            /*ÏÈ°´Ë÷ÒıºÅÅÅĞò*/
+	for (i=n-1;i>=0;i--)                          /*°´Ë÷ÒıºÅ´ÓĞ¡µ½´óÓĞĞò*/
 	{
 		if (!larger(book[i],b,1))                    /*Èç¹ûb´óÓÚµ±Ç°ÔªËØbook[i]£¬ÔòÍË³öÑ­»·*/
 		break;
@@ -108,7 +134,6 @@ int addBook(Book book[],int n,Book b)              /*ÏòbookÊı×éÖĞÒÀÑ§ºÅµİÔö²åÈëÒ
 	n++;                                     /*ÔªËØ¸öÊıÔö¼Ó1*/
 	return n;                                  /*·µ»ØÏÖÓĞÔªËØ¸öÊı*/
 }
-
 int deleteBook(Book book[],int n,Book b)            /*´ÓÊı×éÖĞÉ¾³ıÖ¸¶¨Ñ§ºÅµÄÒ»¸öÔªËØ*/
 {
 	int i,j;
@@ -125,3 +150,117 @@ int deleteBook(Book book[],int n,Book b)            /*´ÓÊı×éÖĞÉ¾³ıÖ¸¶¨Ñ§ºÅµÄÒ»¸ö
 	n--;                                      /*ÔªËØ¸öÊı¼õÉÙ¼Ó1*/
 	return n;                                  /*·µ»ØÏÖÓĞ¸öÊı*/
 }
+int readStudent(Student  *student, int n)          /*¶ÁÈë½èÔÄÈË¼ÇÂ¼Öµ£¬½èÔÄÈËÎª0»ò¶ÁÂú¹æ¶¨ÌõÊı¼ÇÂ¼Ê±Í£Ö¹*/
+{
+	int i;
+	for (i=0;i<n;i++)
+	{
+		printf("Input one borrower's information\n");
+		printf("code:  ");
+	     scanf("%ld", &student[i].num);
+		if (student[i].num==0) break;
+		printf("name: ");
+		scanf("%s",&student[i].name);	
+	}
+	return i;                         /*·µ»ØÊµ¼Ê¶ÁÈëµÄ¼ÇÂ¼ÌõÊı*/
+}
+void printStudent ( Student  *student, int n)       /*Êä³öËùÓĞ½èÔÄÈË¼ÇÂ¼µÄÖµ*/
+{
+    int i;
+	for (i=0;i<n;i++)
+	{
+		printf("%8ld  ", student[i].num);
+		printf("%8s", student[i].name);
+		printf("%s  %ld",student[i].message.title,student[i].message.number);
+	}
+}
+int equal(Student s1,Student s2,int condition)
+{
+  if(condition==1)
+  return s1.num==s2.num;
+  else  return 1;
+ }
+int larger(Student s1,Student s2,int condition)
+{ 
+   if(condition==1)
+         return s1.num>s2.num;
+   else return 1;
+ }
+void reverse1(Student student[],int n)
+{
+  int i;
+  Student temp;
+  for(i=0;i<n/2;i++)
+   {
+     temp=student[i];
+      student[i]=student[n-1-i];
+      student[n-1-i]=temp;
+     }
+ }
+void sortStudent(Student stu[],int n,int condition)  /*Ñ¡Ôñ·¨ÅÅĞò£¬°´conditionÌõ¼şÓÉĞ¡µ½´óÅÅĞò*/
+{
+	int i,j,minpos;                      /*minposÓÃÀ´´æ´¢±¾ÌË×îĞ¡ÔªËØËùÔÚµÄÏÂ±ê*/
+	Student t;
+	for (i=0;i<n-1;i++)                  /*¿ØÖÆÑ­»·µÄn-1ÌË*/
+	{
+		minpos=i;
+		for (j=i+1;j<n;j++)             /*Ñ°ÕÒ±¾ÌË×îĞ¡ÔªËØËùÔÚµÄÏÂ±ê*/
+			if (larger(stu[minpos],stu[j],condition))
+				minpos=j;
+		if (i!=minpos)                 /*±£Ö¤±¾ÌË×îĞ¡ÔªËØµ½´ïÏÂ±êÎªiµÄÎ»ÖÃ*/
+		{
+			t=stu[i];
+			stu[i]=stu[minpos];
+			stu[minpos]=t;
+		}
+	}
+}
+int searchStudent(Student stu[],int n,Student s,int condition,int f[ ])  /*ÔÚstuÊı×éÖĞÒÀconditionÌõ¼ş²éÕÒ*/
+/*ÓësÏàÍ¬µÄÔªËØ£¬ÓÉÓÚ²»Ö¹Ò»Ìõ¼ÇÂ¼·ûºÏÌõ¼ş£¬Òò´Ë½«ÕâĞ©ÔªËØµÄÏÂ±êÖÃÓÚ fÊı×éÖĞ*/
+{
+	int i,j=0,find=0;
+	for (i=0;i<n;i++)                                 /*´ı²éÕÒµÄÔªËØ*/
+		if (equal(stu[i],s,condition))  
+		{
+			f[j++]=i;                          /*ÕÒµ½ÁËÏàµÈµÄÔªËØ£¬½«ÆäÏÂ±ê·Åµ½fÊı×éÖĞ*/
+			find++;	                        /*Í³¼ÆÕÒµ½µÄÔªËØ¸öÊı*/                              
+		}
+	 return find;                                /*·µ»Øfind£¬ÆäÖµÎª0Ôò±íÊ¾Ã»ÕÒµ½*/ 
+}
+int insertStudent(Student student[],int n,Student s)              /*ÏòstudentÊı×éÖĞÒÀÑ§ºÅµİÔö²åÈëÒ»¸öÔªËØs*/
+{
+	int i;
+	sortStudent(student,n,1);                              /*ÏÈ°´Ñ§ºÅÅÅĞò*/
+	for(i=0;i<n;i++)
+  	{
+	 if(equal(student[i],s,1))
+	 {
+           printf("This record exist,can not insert");
+	   }
+	  }
+        for (i=n-1;i>=0;i--)                          /*°´Ñ§ºÅ´ÓĞ¡µ½´óÓĞĞò*/
+	{
+		if (!larger(student[i],s,1))                    /*Èç¹ûs´óÓÚµ±Ç°ÔªËØstudent[i]£¬ÔòÍË³öÑ­»·*/
+		break;
+		student[i+1]=student[i];                         /*·ñÔòÔªËØstudent[i]ºóÒÆÒ»¸öÎ»ÖÃ*/
+	}
+	student[i+1]=s;                                /*ÔÚÏÂ±êi+1´¦²åÈëÔªËØs*/                                   
+	n++;                                     /*ÔªËØ¸öÊıÔö¼Ó1*/
+	return n;                                  /*·µ»ØÏÖÓĞÔªËØ¸öÊı*/
+}
+int deleteStudent(Student student[],int n,Student s)
+{
+  int i,j;
+  for(i=0;i<n;i++)
+     if(equal(student[i],s,1))
+     break;
+    if(i==n);
+    {
+      printf("This record does not exist!\n");
+      return n;
+      }
+      for (j=i;j<n-1;j++)
+         student[j]=student[j+1];
+         n--;
+         return n;
+ }
